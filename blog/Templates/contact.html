@@ -1,0 +1,105 @@
+{%extends 'blog/base.html'%}
+
+{% load static %}
+{% block 'content'%}
+<div class="container-fluid">
+          
+  <div class="row justify justify-content-center">
+    
+      <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="card bg-dark mt-2">
+              <div class="card-body m-5 text-light text-center">
+                  <p class=""><i class="fa fa-phone fa-2x"></i></p>
+                  <p>{{number}}</p>
+
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card bg-dark mt-2">
+            <div class="card-body m-5 text-light text-center">
+                <p class=""><i class="fa fa-envelope fa-2x"></i></p>
+                <p>{{email}}</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="card bg-dark mt-2">
+          <div class="card-body m-5 text-light text-center">
+              <p class=""><i class="fa fa-map fa-2x"></i></p>
+              <p>{{address}}</p>
+      </div>
+</div>
+  </div>
+</div>
+</div>
+</div>
+  
+
+  <div class="row justify-content-center my-5">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+       <div class="card" style="border: 1px solid black;">
+         <div class="card-body">
+           <h5 style="text-align: center; color: blue;"><b>Contact me</b></h5>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+            <div class="form-group">
+              <label for="email">Your email</label>
+              <input type="text" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="message">message me</label>
+              <textarea type="text" class="form-control" id="message" name="message"></textarea>
+            </div>
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-dark w-25% mt-5">
+                <i class="fa fa-envelope mr-2"></i>
+                 text
+              </button>
+            </div>
+          </form>
+
+
+         </div>
+       </div>
+    </div>
+
+  </div>
+
+</div>
+<div class="modal fade" id="thanksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center">
+            <img src="{% static 'images/thankyou.svg' %}" class="img-fluid p-5">
+            <h4>thanks for ur info</h4>
+            <p>we will catch up asap</p>
+            <button type="submit" class="text-primary btn btn-dark">okay</button>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock 'content' %}  
+
+{%block 'scripts' %}
+<script>
+  $(document).ready(function(){
+    $("#contact-form").on('submit', function(e){
+      e.preventDefault();
+      console.log("prevented");
+      $("#thanksModal").modal("show");
+    });
+  });
+</script>
+
+{% endblock 'scripts' %}

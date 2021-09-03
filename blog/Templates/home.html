@@ -1,0 +1,45 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+{%block 'css'%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+{% endblock %}
+{%block 'content'%}
+<div class="container_fluid">
+  <div class="row justify-content-center py-5 bg-dark">
+      <div class="col-lg-4 text-center  text-light my-5">
+          <h1 class="m-5"><i class="fa fa-weibo text-primary mr-3"></i>{{heading}}</h1>
+          <p class="">There are cool stuffs in here to educate you if you want to know</p>
+          <button type="submit" class="btn btn-primary">click for more</button>
+          
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 p-5">
+          <img class="cool" src="{%static 'images/landing.svg'%}">
+      </div>
+  </div>
+  <h3 class="text-center mt-5 mb-5">Awesome topics</h3>
+  <div class="row justify-content-center animate__animated animate__heartBeat">
+      
+    {%for service in services %}
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card bg-dark mt-1">
+            <div class="card-body text-center text-light">
+                <p class=""><i class="fa fa-ravelry fa-2x"></i></p>
+                <p class="mx-5 mb-5 mt-2">{{service}}</p>
+
+            </div>
+
+        </div>
+    </div>
+          
+    {% endfor %}
+
+  </div>
+  <h3 class="text-center mt-5 mb-5">Recent posts</h3>
+  <div class="row">
+      {%include 'blog/simple post.html' %}
+
+  </div>
+</div>
+
+{% endblock 'content'%}
+

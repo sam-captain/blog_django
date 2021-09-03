@@ -1,0 +1,19 @@
+{%extends 'blog/base.html'%}
+{% block 'content'%}
+<form class="form-inline ml-5 m-5">
+    <input class="form-control mr-sm-2 " style="height: 40px; width: 30%;" type="search" placeholder="search" aria-label="search">
+    <button class="btn btn-outline-primary my-2 my-sm-0 " style="width: 50px;"  type="submit"><i class="fa fa-search fa-1x"></i></button>
+</form>
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+            <h1 class="m-10">{{header}}</h1>
+        </div>
+
+    </div>
+    <div class="row">
+        {%include 'blog/simple post.html' %}
+  
+    </div>
+</div>
+{% endblock 'content'%}

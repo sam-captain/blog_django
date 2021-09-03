@@ -1,0 +1,21 @@
+{%extends 'blog/base.html'%}
+{%block 'content'%}
+<h1 class="text-center">Related posts</h1>
+ <div class="row">
+     {% for detail in details %}
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div class="card mt-1 border-1px m-3">
+              <div class="card-body pt-0">
+                      <p class="text-center mt-5"><i class="fa fa-id-badge fa-2x"></i></p>
+                  <h4 class=" text-center my-3">{{detail}}</h4>
+                  <p class="">My name is Samuel doing IT i started school when i was about 3yrs first went to by promise junior academy then went to 
+                      dagoretti muslim primary studies for 3yrs then went to wangige primary</p>
+              </div>
+  
+          </div>
+      </div>
+      {% endfor %}
+</div>
+
+      
+      {% endblock 'content'%}
