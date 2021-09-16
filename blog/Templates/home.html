@@ -1,7 +1,7 @@
 {% extends 'blog/base.html'%}
 {% load static %}
 {%block 'css'%}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
 {% endblock %}
 {%block 'content'%}
 <div class="container_fluid">
@@ -24,7 +24,7 @@
         <div class="card bg-dark mt-1">
             <div class="card-body text-center text-light">
                 <p class=""><i class="fa fa-ravelry fa-2x"></i></p>
-                <p class="mx-5 mb-5 mt-2">{{service}}</p>
+                <p class="mx-5 mb-5 mt-2">{{service.name}}</p>
 
             </div>
 

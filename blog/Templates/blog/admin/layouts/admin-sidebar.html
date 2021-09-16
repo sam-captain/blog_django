@@ -1,0 +1,35 @@
+{% load static %}
+{% block 'content' %}
+<div id="sidebar">
+     <div class="sidebar-header">
+        <h3>My Blog</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li>
+             <a href="{% url 'dashboard' %}">
+                <i class="fa fa-tachometer mr-3"></i>
+                Dashboard</a>
+        </li>
+
+        <li>
+            <a href="{% url 'categories' %}">
+                <i class="fa fa-tags mr-3"></i> 
+                Category</a>
+        </li>
+
+        <li>
+            <a href="{% url 'blog' %}">
+                <i class="fa fa-file-o mr-3"></i>
+                Post</a>
+        </li>
+
+        <li>
+            <a href="{% url 'feedback' %}">
+                <i class="fa fa-comments mr-3"></i>
+                Feedback</a>
+        </li>
+
+    </ul>
+</div>
+{% endblock 'content' %}

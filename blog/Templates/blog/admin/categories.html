@@ -1,0 +1,53 @@
+{% extends 'blog/admin/layouts/admin-base.html'%}
+{% load static %}
+
+{% block 'content'%}
+<div class="container">
+    <h3>Categories {{ category_list|length }}</h3>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <h5>Your Categories</h5>
+                        <a href="{% url 'add_category' %}" class="btn btn-success ml-auto">
+                            <i class="fa fa-plus mr-2"></i>
+                        Add category
+                        </a>  
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Id</td>
+                                <td>Name</td>
+                                <td>Views</td>
+                                <td>created at</td>
+                                <td>Actions</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for category in category_list %}
+                            <tr>
+                                <td>{{category.id}}</td>
+                                <td>{{category.name}}</td>
+                                <td>{{category.views}}</td>
+                                <td>{{category.created_at}}</td>
+                                <td>
+                                    <a href="{% url 'delete_category' category.id %}" class="btn btn-outline-danger btn-sm">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

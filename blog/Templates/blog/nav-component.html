@@ -7,16 +7,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
-              <a class="nav-link text-light" href="{'url'}">Home</a>
+              <a class="nav-link text-light" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item ">
-              <a class="nav-link text-light" href="#">Contact</a>
+              <a class="nav-link text-light" href="{% url 'contact' %}">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light btn-black" href="#">blog</a>
+              <a class="nav-link text-light btn-black" href="{% url 'blog' %}">blog</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light" href="#">posts</a>
+              <a class="nav-link text-light" href="{% url 'myposts' %}">posts</a>
             </li>
           </ul>
         </div>
