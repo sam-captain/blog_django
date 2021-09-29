@@ -4,31 +4,33 @@
 <link rel="stylesheet" href="{% static 'css/style.css'%}">
 {% endblock %}
 {%block 'content'%}
-<div class="container_fluid">
+<div class="container-fluid">
   <div class="row justify-content-center py-5 bg-dark">
-      <div class="col-lg-4 text-center  text-light my-5">
+      <div class="col-lg-6 text-center  text-light my-5">
           <h1 class="m-5"><i class="fa fa-weibo text-primary mr-3"></i>{{heading}}</h1>
           <p class="">There are cool stuffs in here to educate you if you want to know</p>
-          <button type="submit" class="btn btn-primary">click for more</button>
+          <a type="submit" class="btn btn-primary" href="{% url 'posts' %}">click for more</a>
           
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 p-5">
-          <img class="cool" src="{%static 'images/landing.svg'%}">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+          <img class="cool" src="{% static 'images/landing.svg'%}">
       </div>
   </div>
   <h3 class="text-center mt-5 mb-5">Awesome topics</h3>
   <div class="row justify-content-center animate__animated animate__heartBeat">
       
     {%for service in services %}
-    <div class="col-lg-4 col-md-4 col-sm-12">
-        <div class="card bg-dark mt-1">
-            <div class="card-body text-center text-light">
-                <p class=""><i class="fa fa-ravelry fa-2x"></i></p>
-                <p class="mx-5 mb-5 mt-2">{{service.name}}</p>
-
+    <div class="col-lg-3 col-md-3 col-sm-12">
+        <a href="{% url 'category_post' service.id %}">
+            <div class="card bg-dark mt-1">
+                <div class="card-body text-center text-light">
+                    <p class=""><i class="fa fa-ravelry fa-2x"></i></p>
+                    <p class="mx-5 mb-5 mt-2">{{service.name}}</p>  
+    
+                </div>
+    
             </div>
-
-        </div>
+        </a>
     </div>
           
     {% endfor %}
@@ -36,10 +38,52 @@
   </div>
   <h3 class="text-center mt-5 mb-5">Recent posts</h3>
   <div class="row">
-      {%include 'blog/simple post.html' %}
+      {%include 'blog/simple-post.html' %}
 
   </div>
 </div>
+<div id="cookieDiv" class="d-none" style="width: 50vh; position: fixed; bottom: 0; left: 0;">
+    <div class="card">
+        <div class="card-body text-center">
+            <img src="{% static 'images/cookies.svg'%}" alt="just an image">
+            <h4><i class="fa fa-cookie-bite"></i>This site uses cookies</h4>
+            <p>to help us provide a pleasant and useful experience to you, we use cookies.</p>
+            <div class="row justify-content-center">
+                <button type="button" id="cancelcookie" class="btn btn-outline-dark border-0">cancel</button>
+                <button type="button" id="acceptcookie" class="btn btn-success mx-2">Accept cookies</button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 {% endblock 'content'%}
+
+{% block 'scripts'%}
+<script>
+    $(document).ready(function(){
+        $("#cancelcookie").click(function(){
+
+           $("#cookieDiv").addClass("d-none");  
+        });
+        $("#acceptcookie").click(function(){
+
+            $("#cookieDiv").addClass("d-none");
+        });
+
+        var num_of_visits ='{{num_of_visits}}';
+
+         console.log(num_of_visits)
+
+        if(num_of_visits == "0"){
+
+         $("#cookieDiv").removeClass("d-none");
+        } 
+
+    });
+
+</script>
+{% endblock %}
 

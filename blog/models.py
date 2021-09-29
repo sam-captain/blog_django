@@ -14,6 +14,9 @@ class Category(models.Model):
         verbose_name = "Category"
         verbose_name_plural ="Categories"
 
+    def __str__(self):
+        return self.name
+
 class Post(models.Model):
     title =models.CharField(max_length=100)
     message= models.TextField()
@@ -28,6 +31,9 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at =models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.title
+
 class Comments(models.Model):
     message= models.TextField()
     user =models.ForeignKey(User, on_delete=models.CASCADE, blank=False, null=False)
@@ -40,6 +46,9 @@ class Comments(models.Model):
     class Meta:
         verbose_name_plural="Comments"
 
+    def __str__(self):
+        return self.message
+
 class Feedback(models.Model):
     message =models.TextField()
     name =models.CharField(max_length=50)
@@ -48,11 +57,17 @@ class Feedback(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at =models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.email
+
 class Seo(models.Model):
     title=models.CharField(max_length=100)
     keywords=models.TextField()
     occasion=models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at =models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title
 
     

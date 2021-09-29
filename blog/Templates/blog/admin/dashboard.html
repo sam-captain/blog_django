@@ -1,6 +1,50 @@
 {% extends 'blog/admin/layouts/admin-base.html'%}
 {% load static %}
-
 {% block 'content'%}
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2 class="text-info text-center mb-3"><i class = "fa fa-dashboard"> DASHBOARD</h2></i>
+        </div>
 
+      
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                <div class="card mb-3 ">
+                    <div class="card-body bg-dark ">
+                        <p><i class="fa fa-tags text-light fa-2x"></i></p>
+                        <h5 class="text-light">Categories</h5>
+                        <p>{{category_list|length}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p><i class="fa fa-picture-o text-success fa-2x"></i></p>
+                        <h5>Posts</h5>
+                        <p>{{post_list|length}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p><i class="fa fa-comments text-primary fa-2x"></i></p>
+                        <h5>Feedbacks</h5>
+                        <p>{{feedback_list|length}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    
+                    <img src="{% static 'images/animation-bg.jpg'%}" width="100%" height="600px">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

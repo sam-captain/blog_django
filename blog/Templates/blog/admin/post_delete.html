@@ -1,0 +1,14 @@
+{% extends 'blog/admin/layouts/admin-base.html'%}
+{% load static %}
+{% block 'content' %}
+<form method="post">
+    {% csrf_token %}
+
+    <p>Are you sure you want to delete "{{ post }}"?</p>
+
+    <a href="{% url 'view_post' post.id %}" class="btn btn-outline-info">No</a>
+
+    <input type="submit"  value="Confirm" class="btn btn-outline-danger">
+
+   </form>
+{% endblock %} 

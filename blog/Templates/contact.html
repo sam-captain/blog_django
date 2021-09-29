@@ -43,7 +43,7 @@
          <div class="card-body">
            <h5 style="text-align: center; color: blue;"><b>Contact me</b></h5>
 
-          <form action="{% url 'save_feedback'%}" method="POST">
+          <form id="contactForm">
             {% csrf_token %}
 
             <div class="form-group">
@@ -58,7 +58,7 @@
 
             <div class="form-group">
               <label for="number">Phone Number: (optional)</label>
-              <input type="text" class="form-control" id="number" name="number" placeholder="enter your number">
+              <input type="text" class="form-control" id="number" name="number" maxlength="10" placeholder="enter your number">
             </div>
 
             <div class="form-group">
@@ -69,7 +69,7 @@
             <div class="row justify-content-center">
               <button type="submit" class="btn btn-dark w-25% mt-5">
                 <i class="fa fa-envelope mr-2"></i>
-                 text
+                 Submit
               </button>
             </div>
           </form>
@@ -92,7 +92,7 @@
             <img src="{% static 'images/thankyou.svg' %}" class="img-fluid p-5">
             <h4>thanks for ur info</h4>
             <p>we will catch up asap</p>
-            <button type="submit" class="text-primary btn btn-dark">okay</button>
+            <button type="submit" data-dismiss="modal" class="btn btn-dark">okay</button>
           </div>
         </div>
       
@@ -100,15 +100,57 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="thanksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center">
+            <img src="{% static 'images/thankyou.svg' %}" class="img-fluid p-5">
+            <h4>thanks for ur info</h4>
+            <p>we will catch up asap</p>
+            <button type="submit" data-dismiss="modal" class="btn btn-dark">okay</button>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock 'content' %}  
 
 {%block 'scripts' %}
 <script>
   $(document).ready(function(){
-    $("#contact-form").on('submit', function(e){
+    $.ajaxSetup({
+            'X-CSRFToken': $('meta[name="csrf-token"]').attr('content')
+        });
+
+    $("#contactForm").on('submit', function(e){
+
       e.preventDefault();
-      console.log("prevented");
-      $("#thanksModal").modal("show");
+      $.ajax({
+        type : 'POST',
+        url : "{% url 'save_feedback'%}",
+        dataType : 'json',
+        data : $("#contactForm").serialize(),
+        success :function(){
+          $("#contactForm").trigger("reset");
+          $("#thanksModal").modal("show");
+        },
+        error : function(){
+          
+          $("#errorModal").modal("show");
+          console.log(data)
+        }
+     
+
+     
+
+      });
+
     });
   });
 </script>

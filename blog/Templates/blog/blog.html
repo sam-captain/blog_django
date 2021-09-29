@@ -1,19 +1,71 @@
 {%extends 'blog/base.html'%}
 {% block 'content'%}
 <form class="form-inline ml-5 m-5">
-    <input class="form-control mr-sm-2 " style="height: 40px; width: 30%;" type="search" placeholder="search" aria-label="search">
+    <input name="searchInput" id="search" class="form-control mr-sm-2 " style="height: 40px; width: 30%;" type="search" placeholder="search" aria-label="search">
     <button class="btn btn-outline-primary my-2 my-sm-0 " style="width: 50px;"  type="submit"><i class="fa fa-search fa-1x"></i></button>
+    <div id="options" style="position: absolute; top: 150px; background-color: white; z-index: 99;"></div>
 </form>
     
     <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
-            <h1 class="m-10">{{header}}</h1>
+            <h1 class="m-10">{{title}}</h1>
         </div>
 
     </div>
     <div class="row">
-        {%include 'blog/simple post.html' %}
+        {% include 'blog/simple-post.html' %}
   
     </div>
 </div>
-{% endblock 'content'%}
+{% endblock %}
+
+{% block 'scripts' %}
+<script>
+
+    $(document).ready(function(){
+
+        $.ajaxSetup({
+            'X-CSRFToken': $('meta[name="csrf-token"]').attr('content')
+        });
+
+
+        
+        $("#search").keyup(function(){
+
+            console.log($(this).val());
+
+            let searchData = $(this).val()
+            $.ajax({
+                type : "POST",
+                url : "{% url 'search' %}",
+                dataType : "json",
+                data :{'searchInput' : searchData},
+                success : function(data){
+                    console.log(data)
+                    $("#options").html("")
+                    if(data['posts'].length !=0){
+                        for(i=0; i<data['posts'].length; i++){
+                            let post = data['posts'][i]['title']
+                            let url = "/post/details/"+data['posts'][i]['id']
+                            console.log(post)
+                            $("#options").append('<a class="btn btn-outline-dark border-0" href="'+url+'">'+post+'</a> <br><hr>')
+                        }
+                    }
+                },
+                error : function(data){
+                    console.log(data)
+                }
+                });
+            
+
+
+    });
+
+
+    });
+
+
+
+
+</script>
+{% endblock %}

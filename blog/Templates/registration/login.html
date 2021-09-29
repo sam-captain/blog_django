@@ -1,0 +1,49 @@
+{% extends 'blog/base.html'%}
+{% load static %}
+{% load widget_tweaks %}
+{% block 'content'%}
+<section id="login">
+    <div class="container">
+        <h1 class="text-info text-center m-5">Welcome to my login page</h1>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 ">
+                <img src="{% static 'images/login-pana.png'%} " height="100%" width="100%" class="animate__animated animate__flipInX">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="card bg-dark ">
+                    <h3 class="text-center text-light mt-2"><i class="fa fa-sign-in mr-2"></i>login</h3>
+                    <div class="card-body text-light m-5">
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
+        
+                            {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                            {% endfor %}
+        
+                            {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field|add_class:'form-control' }}
+                                {% for error in field.errors %}
+                                <span class="help-block">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+        
+                            <button type="submit" class="btn btn-primary w-50 mt-5">
+                                login
+                             </button>
+                             <a href="{% url 'password_reset' %}" class="btn btn-default ml-5 mt-0">Forgot password</a>
+                        </form>
+
+                    </div>
+                </div>
+                
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+{% endblock%}
